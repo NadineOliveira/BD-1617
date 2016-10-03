@@ -1,0 +1,46 @@
+PROCEDURE efectuar_requisicao()
+BEGIN
+\\Desactivar auto-commit
+START TRANSACTION
+\\Verificar se o exemplar esta disponivel para requisicao
+\\Verificar que o exemplar nao tem reservas e se tiver, 
+ver a mais recente e so fazer requisicao se for pelo utilizador que esta
+a tentar fazer a requisicao
+\\Inserir requisição
+\\Fazer update ao estado do exemplar
+END TRANSACTION
+END
+
+
+PROCEDURE entregar_livro_requisicao()
+BEGIN
+\\Desactivar auto-commit
+START TRANSACTION
+\\Actualizar estado requisição
+\\Actualizar estado exemplar
+END TRANSACTION
+END
+
+PROCEDURE efectuar_reserva()
+BEGIN
+\\Desactivar auto-commit
+START TRANSACTION
+\\Verificar disponibilidade do exemplar
+\\Se não poder ser requisitado, cancelar
+\\Se ja estiver requisitado, inserir marcar como "reserva pedida"
+\\Se estiver livre, marcar como "livro pronto a levantar"
+\\Inserir reserva
+
+END TRANSACTION
+END
+
+TRIGGER AFTER UPDATE ON Exemplar
+BEGIN
+\\Se o exemplar estava livre e agora passa a requisitado,alterar o estado 
+das reservas em que o exemplar participa de "exemplar pronto a levantar" 
+para "reserva pedida" novamente
+\\Se o livro estava requisitado e agora passa a livre alterar o estado
+das reservas em que o exemplar participa de "reserva pedida" para "exemplar pronto a levantar"
+END
+
+
