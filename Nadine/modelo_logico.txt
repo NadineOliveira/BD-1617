@@ -1,0 +1,131 @@
+Modelo lógico
+Neste capítulo vai ser explicado todo o processo de transação do modelo
+conceptual para o modelo lógico.  Vai ser ainda retratada a validação deste
+modelo segundo as regras de normalização, transações, restrições de integridade,
+e ainda, a validação do modelo com o utilizador.
+
+
+1.1. Derivação dos Relacionamentos
+
+1.1.1.  Derivação do Modelo para Obtenção de Tabelas
+
+Nesta secção explicita-se a forma de obtenção das tabelas do modelo lógico,
+apresentando-se os atributos, chaves primárias e estrangeiras correspondentes.
+
+
+1.2. Transações
+Nesta secção o modelo lógico vai ser validado através das mesmas transações
+escolhidas no modelo conceptual.
+
+
+Propriedades das Transações Atomicidade: Uma transação pode ser composta por
+várias operações, mas se uma destas falha a transação não é efetuada;
+Consistência: Após uma transação ser realizada a base de dados fica num estado
+consistente, ou seja, uma transação seve respeitar a integridade dos dados;
+Isolamento : Quaisquer operações dentro de uma transação não são afetadas por
+operações de outras transações a decorrer concorrencialmente; Durabilidade: Após
+uma transição terminar os seus efeitos na base de dados são permanentes.
+
+Consultar a receita total de reservas de um cliente, num dado mês (de um dado
+ano), para a contabilidade.  Na tabela “Cliente” vemos qual é o valor da chave
+primária correspondente ao cliente pretendido. Com o valor obtido consultamos
+todas as reservas efetuadas por esse cliente através da chave estrangeira na
+tabela “Reserva” que referencia a tabela “Cliente”, depois das reservas obtidas
+selecionamos as correspondentes ao mês e ano pretendido e calculamos o preço
+total desse conjunto de reservas efetuadas.
+
+
+
+Consultar os lugares livres de um comboio dado um itinerário.
+
+
+Primeiramente temos que ir á tabela “Bilhete” e selecionamos todos os lugares
+reservados, é possível fazer através da chave estrangeira que referencia
+a tabela Reserva. Depois na tabela “Reserva” selecionamos apenas os lugares cujo
+itinerário é o pretendido, através da chave estrangeira presente na tabela que
+referencia a tabela “Itinerário”. Na tabela “Itinerário” temos uma chave
+primária que identifica esse dado itinerário, então é possível verificar qual
+o “Percurso” associado a esse “Itinerário” através da chave estrangeira nessa
+tabela que referencia a tabela “Percurso”. Após isso é possível determinar
+o comboio associado a esse percurso através da chave estrangeira na tabela
+“Percurso” que referencia a tabela “Comboio”, onde é possível obter os lugares
+disponíveis através da chave estrangeira na tabela “Lugar”, cuja tabela
+referenciada é a tabela comboio. Assim os lugares disponíveis vão ser todos
+aqueles que não estiverem reservados, mas que estão disponíveis no comboio.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Efetuar Reserva
+Antes de uma reserva poder ser efetuada é necessário verificar se o lugar pretendido já não se encontra ocupado, para isso vamos primeiramente à tabela “Percurso” e vemos qual é a chave primária que corresponde ao percurso pretendido pelo cliente, com esta chave e com a chave estrangeira pertencente à tabela “Itinerario” que referencia a tabela “Percurso” vemos qual é o itinerário pretendido pelo cliente, a seguir vamos á tabela “Reserva” e a partir da sua chave estrangeira que referencia a tabela “Itinerario” vemos todas as reservas efetuadas para aquele itinerário, depois na tabela “Bilhete” vemos quais são os lugares que já estão ocupados para aquela reserva, através da chave estrangeira que referencia a tabela reserva. Se o lugar estiver disponível, vamos à tabela "Reserva” e criamos uma nova reserva para o cliente, (através da chave estrangeira na tabela “Reserva” que referencia a tabela “Cliente”) inserindo os dados necessários.
+		
+
+
+
+Tamanho inicial e crescimento futuro
+Nesta secção vai ser retratado uma estimativa inicial do tamanho da base de dados, e ainda uma previsão do seu crescimento.
+Tamanho inicial
+
+Acerca do tamanho inical da base de dados, propõem-se o seguinte estado inicial:
+
+500 clientes : Este valor é baseado num número de clientes de uma agência de viagens de pequena dimensão.
+14 percursos: Sendo a nossa base de dados baseada numa agencia de viagens de pequena dimensão, são apresentados apenas os 14 percursos referidos no capitulo 1.2. 
+10 comboios: Este valor é dado de acordo com os percursos apresentados anteriormente, sendo estes um numero bastante restrito não faria sentido ter uma grande quantidade de comboios. Cada comboio terá 80 lugares, igualmente distribuídos por 4 carruagens (20 lugares por carruagem), teremos ainda que, em cada carruagem 10 lugares serão ao lado da janela e os restantes 10 serão ?????.
+Itinerários:
+Braga-Porto: Será efetuado diariamente nos seguintes horários:
+Hora de partida 9:00; Hora de chegada 10:00;
+ Hora de partida 19:30; Hora de chegada 20:30.
+Porto-Braga: Será efetuado diariamente nos seguintes horários:
+Hora de partida 8:00; Hora de chegada 9:00;
+ Hora de partida 18:30; Hora de chegada 19:30.
+Porto-Lisboa: Será efetuado diariamente nos seguintes horários:
+Hora de partida 6:40; Hora de chegada 9:55;
+ Hora de partida 20:10; Hora de chegada 23:25.
+Lisboa-Porto: Será efetuado diariamente nos seguintes horários:
+Hora de partida 7:00; Hora de chegada 10:15;
+ Hora de partida 19:50; Hora de chegada 23:05.
+Lisboa-Faro: Será efetuado diariamente nos seguintes horários:
+Hora de partida 6:00; Hora de chegada 9:45;
+ Hora de partida 17:15; Hora de chegada 21:00.
+Faro-Lisboa: Será efetuado diariamente nos seguintes horários:
+Hora de partida 8:10; Hora de chegada 11:55;
+ Hora de partida 16:30; Hora de chegada 20:15.
+Lisboa-Madrid: Será efetuado semanalmente nos seguintes horários:
+Hora de partida 9:00; Hora de chegada 19:00;
+Lisboa-Paris: Será efetuado semanalmente nos seguintes horários:
+Hora de partida 9:00; Hora de chegada 19:00;
+
+
+
+
+1000 Reservas: Baseado no numero de clientes, estipulamos um valor inicial de 1000 reservas presentes na base de dados.
+
+Crescimento futuro
+
+Aumento de 100 clientes por ano: Sendo esta  uma agencia de pequena dimensão não se prevê um grande crescimento em relação ao numero de clientes.
+Aumento de 250 reservas por mês: Sendo que um cliente faz em média 0,5 reserva por mês (devido ao facto de existirem clientes que não efetuam reservas em certos meses), é previsto que se obtenha um aumento de 250 reservas por mês.
+
+Em relação ao número de comboios e ao numero de percursos disponíveis, prevê-se que estes irão permanecer inalterados.
