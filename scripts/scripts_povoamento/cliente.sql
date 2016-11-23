@@ -8,7 +8,7 @@ SET SQL_SAFE_UPDATES = 0;
 
 
 
-INSERT INTO Clientes (Nome, NroDocumentIdentif, Rua, Local, CodPostal, Pais) 
+INSERT INTO Cliente (Nome, NroDocIdentif, Rua, Local, CodPostal, Pais) 
 VALUES
 ('Alfredo Ladue','C48478895','59 Hartford Road','Dalton, GA','30721','United States'),
 ('Abbie Degroff','C24978444','8586 Lancaster Dr.','Peabody, MA','01960','United States'),
