@@ -7,7 +7,7 @@
 USE Agencia;
 SET SQL_SAFE_UPDATES = 0;
 
-INSERT INTO Percurso
+INSERT INTO Percurso (LocalPartida, LocalChegada, Preco, Comboio)
 VALUES
 ('Braga','Porto',15.00,5),
 ('Porto','Braga',15.00,5),

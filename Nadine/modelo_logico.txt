@@ -1,0 +1,134 @@
+Modelo lógico
+Neste capítulo vai ser explicado todo o processo de transação do modelo concetual para o modelo lógico.  Vai ser ainda retratada a validação deste modelo segundo as regras de normalização, transações, restrições de integridade, e ainda, a validação do modelo com o utilizador.
+1.1. Derivação dos Relacionamentos
+
+1.1.1.  Derivação do Modelo para Obtenção de Tabelas
+Nesta secção explicita-se a forma de obtenção das tabelas do modelo lógico, apresentando-se os atributos, chaves primárias e estrangeiras correspondentes.
+1.2. Transações
+Nesta secção o modelo lógico vai ser validado através das mesmas transações escolhidas no modelo concetual.
+
+Propriedades das Transações
+* Atomicidade: Uma transação pode ser composta por várias operações, mas se uma destas falha a transação não é efetuada;
+* Consistência: Após uma transação ser realizada a base de dados fica num estado consistente, ou seja, uma transação seve respeitar a integridade dos dados;
+* Isolamento : Quaisquer operações dentro de uma transação não são afetadas por operações de outras transações a decorrer concorrencialmente;
+* Durabilidade: Após uma transição terminar os seus efeitos na base de dados são permanentes.
+
+* Consultar a receita total de reservas de um cliente, num dado mês (de um dado ano), para a contabilidade.
+Na tabela “cliente” vemos qual é o valor da chave primária correspondente ao cliente pretendido. Com o valor obtido consultamos todas as reservas efetuadas por esse cliente através da chave estrangeira na tabela “reserva” que referencia a tabela “cliente”, depois das reservas obtidas selecionamos as correspondentes ao mês e ano pretendido e calculamos o preço total desse conjunto de reservas efetuadas.
+
+
+
+
+
+
+
+
+
+
+
+
+* Consultar os lugares livres de um comboio dado um itinerário e um percurso.
+Inicialmente começamos por ir à tabela “percurso” e vemos qual é a chave primária correspondente ao percurso dado, de seguida vamos á tabela “itinerario” e vemos quais são os itinerários disponíveis para aquele percurso através da chave estrangeira que referencia a tabela “percurso”, dentro dos itinerários obtidos selecionamos aquele que foi fornecido e vemos qual a chave primária respetiva. No próximo passo, vamos á tabela “reserva” e através da chave estrangeira que referencia a tabela “itinerario” vemos quais as reservas efetuadas para aquele itinerário, depois vamos na tabela “reservabilhete” e vemos quais são os lugares que já se encontram reservados, isto é possível devido à chave estrangeira que referencia a tabela “reserva”. Posteriormente vamos na tabela “comboiolugar” e verificamos quais os lugares disponíveis no comboio, os lugares livres vão ser aqueles que estão disponíveis no comboio e que não estão ocupados. 
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+* Efetuar reserva
+Antes de uma reserva poder ser efetuada é necessário verificar se o lugar pretendido já não se encontra ocupado, para isso vamos primeiramente à tabela “percurso” e vemos qual é a chave primária que corresponde ao percurso pretendido pelo cliente, com esta chave e com a chave estrangeira pertencente à tabela “itinerario” que referencia a tabela “percurso” vemos qual é o itinerário pretendido pelo cliente, a seguir vamos á tabela “reserva” e a partir da sua chave estrangeira que referencia a tabela “itinerario” vemos todas as reservas efetuadas para aquele itinerário. Depois na tabela “reservabilhete” vemos quais são os lugares que já estão ocupados para aquela reserva, através da chave estrangeira que referencia a tabela reserva. Se o lugar estiver disponível, vamos à tabela "reserva” e criamos uma nova reserva para o cliente, (através da chave estrangeira na tabela “reserva” que referencia a tabela “cliente”) para isso é necessário fornecer o “idcliente” para identificar qual o cliente que efetua a reserva, a data da reserva, o número de bilhetes que o cliente pretende comprar e o valor total da reserva. Para calcular o valor total da reserva temos de ir á tabela “percurso”, ver qual é o percurso pretendido pelo cliente e retirar o preço correspondente, o valor total da reserva vai ser esse preço vezes o número de bilhetes comprado pelo cliente. É ainda necessário inserir um novo bilhete com os dados fornecidos.
+
+
+		
+
+
+
+Tamanho inicial e crescimento futuro
+Nesta secção vai ser retratado uma estimativa inicial do tamanho da base de dados, e ainda uma previsão do seu crescimento.
+Tamanho inicial
+
+Acerca do tamanho inical da base de dados, propõem-se o seguinte estado inicial:
+
+500 clientes : Este valor é baseado num número de clientes de uma agência de viagens de pequena dimensão.
+14 percursos: Sendo a nossa base de dados baseada numa agencia de viagens de pequena dimensão, são apresentados apenas os 14 percursos referidos no capitulo 1.2. 
+10 comboios: Este valor é dado de acordo com os percursos apresentados anteriormente, sendo estes um numero bastante restrito não faria sentido ter uma grande quantidade de comboios. Cada comboio terá 80 lugares, igualmente distribuídos por 4 carruagens (20 lugares por carruagem), teremos ainda que, em cada carruagem 10 lugares serão ao lado da janela e os restantes 10 serão de coxia.
+Itinerários:
+o Braga-Porto: Será efetuado diariamente nos seguintes horários:
+> Hora de partida 8:00:00; Hora de chegada 12:00:00;
+> Hora de partida 8:00:00; Hora de chegada 11:00:00;
+o Porto-Braga: Será efetuado diariamente no seguinte horário:
+> Hora de partida 17:00:00; Hora de chegada 20:00:00;
+o Porto-Lisboa: Será efetuado diariamente no seguinte horário:
+> Hora de partida 10:00:00; Hora de chegada 14:30:00;
+o Lisboa-Porto: Será efetuado diariamente no seguinte horário:
+> Hora de partida 15:00:00; Hora de chegada 20:30:00;
+o Lisboa-Faro: Será efetuado diariamente no seguinte horário:
+> Hora de partida 10:00:00; Hora de chegada 14:30:00;
+o Faro-Lisboa: Será efetuado diariamente no seguinte horário:
+> Hora de partida 15:00:00; Hora de chegada 20:30:00;
+o Lisboa-Madrid: Será efetuado semanalmente no seguinte horário:
+> Hora de partida 6:00:00; Hora de chegada 22:00:00;
+o Lisboa-Paris: Será efetuado semanalmente no seguinte horário:
+> Hora de partida 05:00:00; Hora de chegada 02:00:00 (dois dias após);
+o Lisboa-Londres: Será efetuado semanalmente no seguinte horário:
+> Hora de partida 09:00:00; Hora de chegada 02:00:00 (do dia seguinte);
+o Lisboa-Berlim: Será efetuado semanalmente no seguinte horário:
+> Hora de partida 09:00:00; Hora de chegada 01:00:00 (dois dias após);
+o Lisboa-Budapeste: Será efetuado semanalmente no seguinte horário:
+> Hora de partida 09:00:00; Hora de chegada 05:00:00 (dois dias após);
+o Lisboa-Praga: Será efetuado semanalmente no seguinte horário:
+> Hora de partida 00:09:00; Hora de chegada 01:00:00 (do dia seguinte);
+o Lisboa-Praga: Será efetuado semanalmente no seguinte horário:
+> Hora de partida 00:09:00; Hora de chegada 01:00:00 (do dia seguinte);
+
+1000 reservas: Baseado no numero de clientes, estipulamos um valor inicial de 1000 reservas presentes na base de dados.
+
+
+
+
+
+
+
+
+
+
+
+Crescimento futuro
+
+Aumento de 100 clientes por ano: Sendo esta  uma agencia de pequena dimensão não se prevê um grande crescimento em relação ao numero de clientes.
+Aumento de 250 reservas por mês: Sendo que um cliente faz em média 0,5 reserva por mês (devido ao facto de existirem clientes que não efetuam reservas em certos meses), é previsto que se obtenha um aumento de 250 reservas por mês.
+
+Em relação ao número de comboios e ao numero de percursos disponíveis, prevê-se que estes irão permanecer inalterados.
+
+
+
+

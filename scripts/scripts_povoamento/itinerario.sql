@@ -7,7 +7,7 @@ USE Agencia;
 SET SQL_SAFE_UPDATES = 0;
 
 
-INSERT INTO Itinerario (DataHoraChegada, DataHoraPartida, Percurso)
+INSERT INTO Itinerario (DataHoraPartida, DataHoraChegada, Percurso)
 VALUES
 ('2016-12-01 08:00:00','2016-12-01 12:30:00',1),
 ('2016-12-01 10:00:00','2016-12-01 14:30:00',5),
