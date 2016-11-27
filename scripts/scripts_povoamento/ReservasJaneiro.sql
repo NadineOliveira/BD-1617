@@ -6,7 +6,7 @@
 USE Agencia;
 SET SQL_SAFE_UPDATES = 0;
 
-INSERT INTO Reserva (DataReserva, TotalReserva, TotalBilhetes, Cliente, Itinerario)
+INSERT INTO ReservaBilhete (Reserva,NroCarruagem,TipoLugar,NroBilhete,NroLugar,Comboio)
 VALUES
 (1,1,'J',1,1,12),
 (2,1,'C',2,2,12),
