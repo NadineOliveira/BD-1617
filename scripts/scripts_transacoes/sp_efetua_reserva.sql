@@ -30,7 +30,7 @@ FROM
         INNER JOIN
     Itinerario ON Itinerario.Percurso = Percurso.idPercurso
 WHERE
-    Itinerario.idItinerario = 1;
+    Itinerario.idItinerario = nro_itinerario;
     
 SELECT 
     Preco INTO PrecoVenda

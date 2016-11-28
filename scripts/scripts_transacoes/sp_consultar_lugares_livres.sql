@@ -25,7 +25,8 @@ SELECT
     ComboioLugar.TipoLugar,
     ComboioLugar.Comboio
 FROM
-    (SELECT 
+    (
+	SELECT 
         ReservaBilhete.NroLugar,
             ReservaBilhete.NroCarruagem,
             ReservaBilhete.TipoLugar,
@@ -34,7 +35,8 @@ FROM
         Reserva
     INNER JOIN ReservaBilhete ON Reserva.idReserva = ReservaBilhete.Reserva
     WHERE
-        Reserva.Itinerario = itinerario_nro) AS T
+        Reserva.Itinerario = itinerario_nro
+		) AS T
         RIGHT JOIN
     ComboioLugar ON T.NroLugar = ComboioLugar.NroLugar
         AND T.Comboio = ComboioLugar.Comboio
