@@ -1,7 +1,3 @@
-﻿
--- Universidade do Minho
--- Mestrado Integrado em Engenharia Informática
--- Unidade Curricular de Bases de Dados 2016/2017
 
 
 USE Agencia;
