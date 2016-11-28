@@ -84,8 +84,8 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `Agencia`.`Reserva` (
   `idReserva` INT NOT NULL AUTO_INCREMENT,
   `DataReserva` DATE NOT NULL,
-  `TotalReserva` DECIMAL(10,2) NOT NULL DEFAULT 0,
-  `TotalBilhetes` INT NOT NULL DEFAULT 0.00,
+  `TotalReserva` DECIMAL(10,2) NOT NULL DEFAULT 0.00,
+  `TotalBilhetes` INT NOT NULL DEFAULT 0,
   `Cliente` INT NOT NULL,
   `Itinerario` INT NOT NULL,
   PRIMARY KEY (`idReserva`, `Cliente`),
