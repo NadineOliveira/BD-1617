@@ -70,6 +70,8 @@ CREATE TABLE IF NOT EXISTS `Agencia`.`Itinerario` (
   `Percurso` INT NOT NULL,
   PRIMARY KEY (`idItinerario`, `Percurso`),
   INDEX `fk_Itinerario_Percurso_idx` (`Percurso` ASC),
+  INDEX `idx_DataHoraPartida` (`DataHoraPartida`),
+  INDEX `idx_DataHoraChegada` (`DataHoraChegada`),
   CONSTRAINT `fk_Itinerario_Percurso`
     FOREIGN KEY (`Percurso`)
     REFERENCES `Agencia`.`Percurso` (`idPercurso`)
@@ -91,6 +93,7 @@ CREATE TABLE IF NOT EXISTS `Agencia`.`Reserva` (
   PRIMARY KEY (`idReserva`, `Cliente`),
   INDEX `fk_Reserva_Cliente_idx` (`Cliente` ASC),
   INDEX `fk_Reserva_Itinerario_idx` (`Itinerario` ASC),
+  INDEX `idx_DataReserva` (`DataReserva`),
   CONSTRAINT `fk_Reserva_Cliente`
     FOREIGN KEY (`Cliente`)
     REFERENCES `Agencia`.`Cliente` (`idCliente`)
