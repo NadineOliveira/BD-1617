@@ -1,6 +1,6 @@
 use Agencia;
 
-DROP PROCEDURE IF EXISTS sp_efetuar_reserva;
+DROP PROCEDURE IF EXISTS sp_efetuar_reserva_1_bilhete;
 
 DELIMITER $$
 CREATE PROCEDURE sp_efetuar_reserva_1_bilhete 
@@ -31,15 +31,6 @@ FROM
     Itinerario ON Itinerario.Percurso = Percurso.idPercurso
 WHERE
     Itinerario.idItinerario = 1;
-    
-SELECT 
-    Preco INTO PrecoVenda
-FROM
-    Itinerario
-        INNER JOIN
-    Percurso ON Itinerario.Percurso = Percurso.idPercurso
-WHERE
-    Itinerario.idItinerario = nro_itinerario;
     
     
     -- Verifica restrição dos lugares
