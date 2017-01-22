@@ -41,8 +41,3 @@ MATCH(rv1:ReservaBilhete {Reserva:1, NroCarruagem:1,TipoLugar:"J", NroBilhete:1,
 CREATE (r1)-[:RESERVA_INCLUI_BILHETE]->(rv1)
 
 
-/*
-MATCH (cl1:ComboioLugar{NroLugar:1, NroCarruagem:1, TipoLugar:"J", Comboio:5})
-MATCH(rv1:ReservaBilhete {Reserva:1, NroCarruagem:1,TipoLugar:"J", NroBilhete:1, NroLugar:1, Comboio:5})
-CREATE (rv1)<-[:Dispor]-(cl1)
-*/
