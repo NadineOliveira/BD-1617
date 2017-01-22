@@ -3,7 +3,7 @@ CREATE (r1:Reserva{TotalReserva:120,DataReserva:"2016-12-12",TotalBilhetes:2,Iti
 
 CREATE (c1:Cliente{NroDocIdentif:"C48478895",CodPostal:30721,idCliente:1,Local:"Dalton, GA",Nome:"Alfredo Ladue",Pais:"United States",Rua:"59 Hartford Road"})
 
-CREATE(i1:Itinerario{idItinerario":1,DataHoraPartida:"2016-12-01 08:00:00",DataHoraChegada:"2016-12-01 12:30:00",Percurso:1})
+CREATE(i1:Itinerario{idItinerario:1,DataHoraPartida:"2016-12-01 08:00:00",DataHoraChegada:"2016-12-01 12:30:00",Percurso:1})
 
 CREATE(p1:Percurso{Preco:"15.00",LocalPartida:"Braga",idPercurso:1,Comboio:5,LocalChegada:"Porto"})
 
@@ -20,11 +20,11 @@ CREATE (c1)-[:Efetuar]->(r1)
 
 
 MATCH (r1:Reserva{TotalReserva:120,DataReserva:"2016-12-12",TotalBilhetes:2,Itinerario:1,Cliente:1,idReserva:1})  
-MATCH(i1:Itinerario{idItinerario":1,DataHoraPartida:"2016-12-01 08:00:00",DataHoraChegada:"2016-12-01 12:30:00",Percurso:1})
+MATCH(i1:Itinerario{idItinerario:1,DataHoraPartida:"2016-12-01 08:00:00",DataHoraChegada:"2016-12-01 12:30:00",Percurso:1})
 CREATE (i1)-[:Conter]->(r1)
 
 MATCH(p1:Percurso{Preco:"15.00",LocalPartida:"Braga",idPercurso:1,Comboio:5,LocalChegada:"Porto"})
-MATCH(i1:Itinerario{idItinerario":1,DataHoraPartida:"2016-12-01 08:00:00",DataHoraChegada:"2016-12-01 12:30:00",Percurso:1})
+MATCH(i1:Itinerario{idItinerario:1,DataHoraPartida:"2016-12-01 08:00:00",DataHoraChegada:"2016-12-01 12:30:00",Percurso:1})
 CREATE (p1)-[:Corresponder]->(i1)
 
 MATCH(co1:Comboio{Marca:"Fiat/SOREFAME",Modelo:"Série 2241-2295",NroComboio:1}) 
