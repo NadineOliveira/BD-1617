@@ -21,7 +21,7 @@ CREATE (c1)-[:CLIENTE_EFETUA_RESERVA]->(r1)
 
 MATCH (r1:Reserva{TotalReserva:120,DataReserva:"2016-12-12",TotalBilhetes:2,Itinerario:1,Cliente:1,idReserva:1})  
 MATCH(i1:Itinerario{idItinerario:1,DataHoraPartida:"2016-12-01 08:00:00",DataHoraChegada:"2016-12-01 12:30:00",Percurso:1})
-CREATE (i1)-[:RESERVA_CONTEM_ITINERARIO]->(r1)
+CREATE (i1)-[:ITINERARIO_EM_RESERVA]->(r1)
 
 MATCH(i1:Itinerario{idItinerario:1,DataHoraPartida:"2016-12-01 08:00:00",DataHoraChegada:"2016-12-01 12:30:00",Percurso:1})
 MATCH(p1:Percurso{Preco:"15.00",LocalPartida:"Braga",idPercurso:1,Comboio:5,LocalChegada:"Porto"})
