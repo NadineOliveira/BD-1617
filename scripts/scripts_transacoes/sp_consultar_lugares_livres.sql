@@ -8,7 +8,7 @@ BEGIN
 -- Obtem número do comboio correspondente ao itinerario
 SELECT 
     NroComboio
-INTO nro_comboio FROM
+INTO itinerario_nro FROM
     Comboio
         INNER JOIN
     Percurso ON Comboio.NroComboio = Percurso.Comboio
@@ -41,7 +41,7 @@ FROM
     ComboioLugar ON T.NroLugar = ComboioLugar.NroLugar
         AND T.Comboio = ComboioLugar.Comboio
 WHERE
-    ComboioLugar.Comboio = nro_comboio
+    ComboioLugar.Comboio = itinerario_nro
         AND T.NroLugar IS NULL
         AND T.Comboio IS NULL;
 
