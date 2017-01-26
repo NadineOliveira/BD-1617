@@ -5,6 +5,7 @@ DELIMITER $$
 CREATE PROCEDURE `sp_consultar_lugares_livres`(IN itinerario_nro int)
 BEGIN
 
+DECLARE nro_comboio INT;
 -- Obtem número do comboio correspondente ao itinerario
 SELECT 
     NroComboio
@@ -27,7 +28,7 @@ SELECT
 FROM
     (
 	SELECT 
-        ReservaBilhete.NroLugar,
+			ReservaBilhete.NroLugar,
             ReservaBilhete.NroCarruagem,
             ReservaBilhete.TipoLugar,
             ReservaBilhete.Comboio
