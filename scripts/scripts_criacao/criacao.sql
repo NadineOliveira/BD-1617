@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS `Agencia`.`Percurso` (
   `LocalChegada` VARCHAR(45) NOT NULL,
   `Preco` DECIMAL(10,2) NOT NULL,
   `Comboio` INT NOT NULL,
-  PRIMARY KEY (`idPercurso`, `Comboio`),
+  PRIMARY KEY (`idPercurso`),
   INDEX `fk_Percurso_Comboio_idx` (`Comboio` ASC),
   CONSTRAINT `fk_Percurso_Comboio`
     FOREIGN KEY (`Comboio`)
@@ -68,7 +68,7 @@ CREATE TABLE IF NOT EXISTS `Agencia`.`Itinerario` (
   `DataHoraPartida` DATETIME NOT NULL,
   `DataHoraChegada` DATETIME NOT NULL,
   `Percurso` INT NOT NULL,
-  PRIMARY KEY (`idItinerario`, `Percurso`),
+  PRIMARY KEY (`idItinerario`),
   INDEX `fk_Itinerario_Percurso_idx` (`Percurso` ASC),
   INDEX `idx_DataHoraPartida` (`DataHoraPartida`),
   INDEX `idx_DataHoraChegada` (`DataHoraChegada`),
@@ -90,7 +90,7 @@ CREATE TABLE IF NOT EXISTS `Agencia`.`Reserva` (
   `TotalBilhetes` INT NOT NULL DEFAULT 0,
   `Cliente` INT NOT NULL,
   `Itinerario` INT NOT NULL,
-  PRIMARY KEY (`idReserva`, `Cliente`),
+  PRIMARY KEY (`idReserva`),
   INDEX `fk_Reserva_Cliente_idx` (`Cliente` ASC),
   INDEX `fk_Reserva_Itinerario_idx` (`Itinerario` ASC),
   INDEX `idx_DataReserva` (`DataReserva`),
