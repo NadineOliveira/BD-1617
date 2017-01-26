@@ -1,4 +1,4 @@
-
+USE Agencia;
 INSERT INTO Reserva (DataReserva, TotalReserva, TotalBilhetes, Cliente, Itinerario)
 VALUES
 ('2017-01-01',45,1,251,234),

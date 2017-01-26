@@ -1,3 +1,4 @@
+USE Agencia;
 INSERT INTO ReservaBilhete (Reserva, NroCarruagem, TipoLugar, NroBilhete, NroLugar, Comboio)
 
 VALUES
