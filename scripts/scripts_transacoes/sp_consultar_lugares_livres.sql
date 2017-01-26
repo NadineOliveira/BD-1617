@@ -5,10 +5,11 @@ DELIMITER $$
 CREATE PROCEDURE `sp_consultar_lugares_livres`(IN itinerario_nro int)
 BEGIN
 
+DECLARE nro_comboio INT;
 -- Obtem número do comboio correspondente ao itinerario
 SELECT 
     NroComboio
-INTO itinerario_nro FROM
+INTO nro_comboio FROM
     Comboio
         INNER JOIN
     Percurso ON Comboio.NroComboio = Percurso.Comboio
@@ -27,7 +28,7 @@ SELECT
 FROM
     (
 	SELECT 
-        ReservaBilhete.NroLugar,
+			ReservaBilhete.NroLugar,
             ReservaBilhete.NroCarruagem,
             ReservaBilhete.TipoLugar,
             ReservaBilhete.Comboio
@@ -41,7 +42,7 @@ FROM
     ComboioLugar ON T.NroLugar = ComboioLugar.NroLugar
         AND T.Comboio = ComboioLugar.Comboio
 WHERE
-    ComboioLugar.Comboio = itinerario_nro
+    ComboioLugar.Comboio = nro_comboio
         AND T.NroLugar IS NULL
         AND T.Comboio IS NULL;
 
