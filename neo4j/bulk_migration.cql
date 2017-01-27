@@ -124,3 +124,16 @@ MATCH (lugar :ComboioLugar {Comboio: toInt(row.Comboio)})
 MATCH (comboio :Comboio {NroComboio: toInt(row.Comboio)})
 MERGE (comboio)-[:COMBOIO_POSSUI_LUGAR]->(lugar);
 
+schema await;
+
+MATCH (p:Percurso)
+REMOVE p.Comboio;
+
+MATCH (i:Itinerario)
+REMOVE i.Percurso;
+
+MATCH (r:Reserva)
+REMOVE r.Itinerario, r.Cliente;
+
+MATCH (r:ReservaBilhete)
+REMOVE r.Comboio;
